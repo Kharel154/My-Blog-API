@@ -13,6 +13,9 @@ def get_article(db: Session, article_id: int):
     return db.query(models.Article).filter(models.Article.id == article_id).first()
 
 def search_articles(db: Session, query_text: str):
+    if query_text.isdigit():
+        return db.query(models.Article).filter(models.Article.id == int(query_text)).all()
+    
     return db.query(models.Article).filter(
         (models.Article.titre.contains(query_text)) | 
         (models.Article.contenu.contains(query_text))
