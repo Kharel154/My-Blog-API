@@ -1,8 +1,8 @@
-const API_URL = 'https://my-blog-api-q9j6.onrender.com'';
+const API_URL = 'https://my-blog-api-q9j6.onrender.com';
 
 document.addEventListener('DOMContentLoaded', fetchArticles);
 
-
+// 1. GESTION DU FORMULAIRE (Création OU Modification)
 document.getElementById('articleForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -16,8 +16,8 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
         contenu: document.getElementById('contenu').value
     };
 
-    
-    const url = id ? `${API_URL}/${id}` : API_URL;
+    // Correction des URLs pour inclure /api/articles
+    const url = id ? `${API_URL}/api/articles/${id}` : `${API_URL}/api/articles`;
     const method = id ? 'PUT' : 'POST';
 
     try {
@@ -39,10 +39,11 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
     }
 });
 
-
+// 2. CHARGER TOUS LES ARTICLES
 async function fetchArticles() {
     try {
-        const response = await fetch(API_URL);
+        // Ajout de /api/articles ici
+        const response = await fetch(`${API_URL}/api/articles`);
         const data = await response.json();
         afficherArticles(data);
     } catch (error) {
@@ -54,7 +55,7 @@ function afficherArticles(articles) {
     const conteneur = document.getElementById('articlesList');
     conteneur.innerHTML = '';
 
-    if (articles.length === 0) {
+    if (!articles || articles.length === 0) {
         conteneur.innerHTML = '<p>Aucun article trouvé.</p>';
         return;
     }
@@ -76,10 +77,10 @@ function afficherArticles(articles) {
     });
 }
 
-
+// 3. LIRE UN ARTICLE (MODALE)
 async function lireArticle(id) {
     try {
-        const response = await fetch(`${API_URL}/${id}`);
+        const response = await fetch(`${API_URL}/api/articles/${id}`);
         const article = await response.json();
         
         document.getElementById('modalTitre').innerText = article.titre;
@@ -97,13 +98,12 @@ function fermerModal() {
     document.getElementById('lectureModal').style.display = 'none';
 }
 
-
+// 4. PRÉPARER LA MODIFICATION
 async function preparerModification(id) {
     try {
-        const response = await fetch(`${API_URL}/${id}`);
+        const response = await fetch(`${API_URL}/api/articles/${id}`);
         const article = await response.json();
 
-        
         document.getElementById('articleId').value = article.id;
         document.getElementById('titre').value = article.titre;
         document.getElementById('auteur').value = article.auteur;
@@ -112,11 +112,9 @@ async function preparerModification(id) {
         document.getElementById('tags').value = article.tags;
         document.getElementById('contenu').value = article.contenu;
 
-        
         document.getElementById('submitBtn').innerText = "Enregistrer la modification";
         document.getElementById('submitBtn').style.backgroundColor = "#f39c12";
         document.getElementById('cancelBtn').style.display = "block";
-        
         
         window.scrollTo(0, 0);
     } catch (error) {
@@ -136,7 +134,7 @@ function annulerModification() {
 async function supprimerArticle(id) {
     if(confirm("Voulez-vous vraiment supprimer cet article ?")) {
         try {
-            const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            const response = await fetch(`${API_URL}/api/articles/${id}`, { method: 'DELETE' });
             if (response.ok) fetchArticles();
         } catch (error) {
             console.error('Erreur lors de la suppression:', error);
@@ -144,13 +142,13 @@ async function supprimerArticle(id) {
     }
 }
 
-// RECHERCHER UN ARTICLE
+// 6. RECHERCHER UN ARTICLE
 async function searchArticles() {
     const query = document.getElementById('searchInput').value;
-    if (!query) return fetchArticles(); // Si c'est vide, on recharge tout
+    if (!query) return fetchArticles();
 
     try {
-        const response = await fetch(`${API_URL}/search?query=${query}`);
+        const response = await fetch(`${API_URL}/api/articles/search?query=${query}`);
         const data = await response.json();
         afficherArticles(data);
     } catch (error) {
