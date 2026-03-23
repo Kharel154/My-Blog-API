@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Blog API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestionnaire de Blog</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher un article...">
+            <button onclick="searchArticles()">Rechercher</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Créer un nouvel article</h2>
+            <form id="articleForm">
+                <input type="hidden" id="articleId"> 
+                
+                <input type="text" id="titre" placeholder="Titre de l'article" required>
+                <input type="text" id="auteur" placeholder="Auteur" required>
+                <input type="date" id="date" required>
+                <input type="text" id="categorie" placeholder="Catégorie (ex: Tech)">
+                <input type="text" id="tags" placeholder="Tags (séparés par des virgules)">
+                <textarea id="contenu" placeholder="Contenu de l'article" required></textarea>
+    
+    <div class="form-buttons">
+        <button type="submit" id="submitBtn">Ajouter l'article</button>
+        <button type="button" id="cancelBtn" class="cancel-btn" style="display:none;" onclick="annulerModification()">Annuler</button>
+    </div>
+</form>
+        </section>
+
+        <section class="articles-section">
+            <div id="lectureModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="fermerModal()">&times;</span>
+                    <h2 id="modalTitre">Titre</h2>
+                    <p class="meta" id="modalMeta">Auteur | Date | Catégorie</p>
+                    <div class="tags-container" id="modalTags"></div>
+                    <hr>
+                    <p id="modalContenu" class="modal-texte">Contenu de l'article...</p>
+                </div>
+            </div>
+
+            <h2>Articles</h2>
+            <div id="articlesList" class="articles-container">
+                <!-- Les articles seront affichés ici -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
