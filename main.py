@@ -6,12 +6,23 @@ import models, schemas, crud
 from database import SessionLocal, engine
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+
 
 
 models.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(title="API Blog INF222")
+
+
+app.mount("/static", StaticFiles(directory="."), name="static")
+
+@app.get("/")
+async def read_index():
+    return FileResponse('index.html')
 
 
 app.add_middleware(
