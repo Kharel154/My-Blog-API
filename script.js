@@ -2,7 +2,7 @@ const API_URL = 'https://my-blog-api-usc5.onrender.com'
 
 document.addEventListener('DOMContentLoaded', fetchArticles);
 
-// 1. GESTION DU FORMULAIRE (Création OU Modification)
+
 document.getElementById('articleForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -16,7 +16,7 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
         contenu: document.getElementById('contenu').value
     };
 
-    // Correction des URLs pour inclure /api/articles
+    
     const url = id ? `${API_URL}/api/articles/${id}` : `${API_URL}/api/articles`;
     const method = id ? 'PUT' : 'POST';
 
@@ -39,10 +39,10 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
     }
 });
 
-// 2. CHARGER TOUS LES ARTICLES
+
 async function fetchArticles() {
     try {
-        // Ajout de /api/articles ici
+        
         const response = await fetch(`${API_URL}/api/articles`);
         const data = await response.json();
         afficherArticles(data);
@@ -77,7 +77,7 @@ function afficherArticles(articles) {
     });
 }
 
-// 3. LIRE UN ARTICLE (MODALE)
+
 async function lireArticle(id) {
     try {
         const response = await fetch(`${API_URL}/api/articles/${id}`);
@@ -98,7 +98,7 @@ function fermerModal() {
     document.getElementById('lectureModal').style.display = 'none';
 }
 
-// 4. PRÉPARER LA MODIFICATION
+
 async function preparerModification(id) {
     try {
         const response = await fetch(`${API_URL}/api/articles/${id}`);
@@ -130,7 +130,7 @@ function annulerModification() {
     document.getElementById('cancelBtn').style.display = "none";
 }
 
-// 5. SUPPRIMER UN ARTICLE
+
 async function supprimerArticle(id) {
     if(confirm("Voulez-vous vraiment supprimer cet article ?")) {
         try {
@@ -142,7 +142,7 @@ async function supprimerArticle(id) {
     }
 }
 
-// 6. RECHERCHER UN ARTICLE
+
 async function searchArticles() {
     const query = document.getElementById('searchInput').value;
     if (!query) return fetchArticles();
