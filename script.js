@@ -1,4 +1,4 @@
-const API_URL = 'https://my-blog-api-usc5.onrender.com/';
+const API_URL = 'https://my-blog-api-q9j6.onrender.com/api/articles';
 
 document.addEventListener('DOMContentLoaded', fetchArticles);
 
