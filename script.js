@@ -1,8 +1,8 @@
-const API_URL = 'http://127.0.0.1:8000/api/articles';
+const API_URL = 'https://My-Blog-API.onrender.com/api/articles';';
 
 document.addEventListener('DOMContentLoaded', fetchArticles);
 
-// 1. GESTION DU FORMULAIRE (Création OU Modification)
+
 document.getElementById('articleForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -16,7 +16,7 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
         contenu: document.getElementById('contenu').value
     };
 
-    // Si on a un ID, on modifie (PUT), sinon on crée (POST)
+    
     const url = id ? `${API_URL}/${id}` : API_URL;
     const method = id ? 'PUT' : 'POST';
 
@@ -29,8 +29,8 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
 
         if (response.ok) {
             alert(id ? 'Article modifié avec succès !' : 'Article créé avec succès !');
-            annulerModification(); // Réinitialise le formulaire
-            fetchArticles(); // Recharge la liste
+            annulerModification(); 
+            fetchArticles(); 
         } else {
             alert("Erreur lors de l'enregistrement.");
         }
@@ -39,7 +39,7 @@ document.getElementById('articleForm').addEventListener('submit', async (e) => {
     }
 });
 
-// 2. RÉCUPÉRER ET AFFICHER LES ARTICLES
+
 async function fetchArticles() {
     try {
         const response = await fetch(API_URL);
@@ -76,7 +76,7 @@ function afficherArticles(articles) {
     });
 }
 
-// 3. LIRE UN ARTICLE (Ouvrir la modale)
+
 async function lireArticle(id) {
     try {
         const response = await fetch(`${API_URL}/${id}`);
@@ -97,13 +97,13 @@ function fermerModal() {
     document.getElementById('lectureModal').style.display = 'none';
 }
 
-// 4. PRÉPARER LA MODIFICATION
+
 async function preparerModification(id) {
     try {
         const response = await fetch(`${API_URL}/${id}`);
         const article = await response.json();
 
-        // Remplir le formulaire
+        
         document.getElementById('articleId').value = article.id;
         document.getElementById('titre').value = article.titre;
         document.getElementById('auteur').value = article.auteur;
@@ -112,12 +112,12 @@ async function preparerModification(id) {
         document.getElementById('tags').value = article.tags;
         document.getElementById('contenu').value = article.contenu;
 
-        // Changer l'apparence du formulaire
+        
         document.getElementById('submitBtn').innerText = "Enregistrer la modification";
         document.getElementById('submitBtn').style.backgroundColor = "#f39c12";
         document.getElementById('cancelBtn').style.display = "block";
         
-        // Faire défiler vers le haut pour voir le formulaire
+        
         window.scrollTo(0, 0);
     } catch (error) {
         console.error('Erreur lors de la préparation:', error);
