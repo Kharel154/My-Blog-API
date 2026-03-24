@@ -13,6 +13,8 @@ Ce projet est une application web Fullstack permettant de gérer des articles de
 L'application est hébergée sur la plateforme Cloud Render et est accessible via l'URL suivante :
 👉 **Lien direct :** [https://my-blog-api-usc5.onrender.com/](https://my-blog-api-usc5.onrender.com/)
 
+**NB**: Utiliser un VPN si le lien vers le site heberger sur render semble ne pas vouloir s'ouvrir
+
 ---
 
 ## 🛠️ 2. Installation et Configuration locale
