@@ -68,9 +68,9 @@ function afficherArticles(articles) {
             <p class="meta">Par ${article.auteur} | ${article.categorie}</p>
             <p>${article.contenu.substring(0, 80)}...</p>
             <div class="btn-actions">
-                <button class="btn-lire" onclick="lireArticle(${article.id})">👁️ Lire</button>
-                <button class="btn-modifier" onclick="preparerModification(${article.id})">📝 Modifier</button>
-                <button class="delete-btn" onclick="supprimerArticle(${article.id})">🗑️ Supprimer</button>
+                <button class="btn-lire" onclick="lireArticle('${article.id}')">👁️ Lire</button>
+                <button class="btn-modifier" onclick="preparerModification('${article.id}')">📝 Modifier</button>
+                <button class="delete-btn" onclick="supprimerArticle('${article.id}')">🗑️ Supprimer</button>
             </div>
         `;
         conteneur.appendChild(div);
