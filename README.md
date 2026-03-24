@@ -99,8 +99,10 @@ L'interface de l'app de blog
 
 
 
+
 Pour creer un article, vous remplisez les info demander et clickez sur Ajouter l'article
 <img width="1920" height="1080" alt="Screenshot from 2026-03-23 21-25-22" src="https://github.com/user-attachments/assets/4074fcf9-1aff-4974-9cf7-96082bae6965" />
+
 
 
 Voici l'article ajouter en bas
@@ -108,11 +110,48 @@ Voici l'article ajouter en bas
 
 
 
+
+
+Le bouton lire permet de lire l'article au complet
+<img width="1709" height="1003" alt="lire" src="https://github.com/user-attachments/assets/1b7cd848-c6d8-4992-8523-20f098268e5c" />
+
+
+
+
+Le bouton modifier permet de modifier l'article et le bouton annuler c'est pour annuler les modifications
+<img width="1920" height="1080" alt="modif" src="https://github.com/user-attachments/assets/809977b5-47bd-4347-803f-bbaaa79c9e46" />
+
+
+
+
+Le bouton supprimer permet d'effacer l'article
+<img width="1920" height="1080" alt="Screenshot from 2026-03-23 01-43-31" src="https://github.com/user-attachments/assets/5fa357ff-06bb-4a7f-a330-b3f31c5338d5" />
+
+
+
+
+La barre de recherche permet de rechercher un article par son titre ou par des mots dans son contenu
+<img width="1920" height="1080" alt="Screenshot from 2026-03-23 02-14-59" src="https://github.com/user-attachments/assets/6b4ee18e-da25-4ce9-8db7-11f85ff03534" />
+
+
 ### 4.2. Logique d'Utilisation (CRUD)
 Le fichier `script.js` gère les interactions principales via l'API **Fetch** :
 
 1.  **Affichage :** Au chargement de la page, une requête `GET` récupère tous les articles en base de données.
 2.  **Création :** Lors de la soumission du formulaire, les données sont envoyées via une requête `POST` au format JSON.
-3.  **Lecture :** Un clic sur un article ouvre une fenêtre modale affichant le contenu complet récupéré dynamiquement.
+3.  **Lecture/Modifier :** Un clic sur un article ouvre une fenêtre modale affichant le contenu complet récupéré dynamiquement.
 4.  **Suppression :** Chaque article possède un bouton permettant d'envoyer une requête `DELETE` au serveur.
+
+
+
+---
+
+## 👤 Auteur
+
+| **Nom & Prénom** | **Statut** | **Établissement** |
+| :--- | :--- | :--- |
+| **Biloa Nguema A. Kharel** | Étudiant en Informatique (Niveau 2) | Université de Yaoundé I |
+
+---
+*Réalisé dans le cadre du projet INF222 - Mars 2026*
 
